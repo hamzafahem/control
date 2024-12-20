@@ -1,0 +1,49 @@
+
+
+type Auteur {
+    id: ID!
+    nomA: String!
+    livres: [Livre!]!
+}
+
+type Livre {
+    id: ID!
+    titre: String!
+    prix: Float!
+    auteurId: Auteur!
+}
+
+
+type Query {
+
+    GetLivreAll: [Livre!]!
+
+    GetLivreById(id: Long!): Livre
+
+    GetLivreAllBetwenPrice(pr1: Float!, pr2: Float!): [Livre!]!
+
+
+    GetLivreParAuteur(auteur: Auteur!): [Livre!]!
+
+
+    GetAuteurALL: [Auteur!]!
+}
+
+
+type Mutation {
+
+    Ajouterlivre(titre: String!, prix: Float!, auteurId: Long!): String!
+
+
+    MiseAjour(id: Long!, titre: String, prix: Float, auteurId: Long): Boolean!
+
+
+    Delete(id: Long!): Boolean!
+}
+
+input LivreInput {
+    titre: String!
+    prix: Float!
+    auteurId: Long!
+}
+
